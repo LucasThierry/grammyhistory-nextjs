@@ -3,15 +3,21 @@
 // WaveChart.js
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-
-
 import { Chart, registerables} from 'chart.js';
-
 Chart.register(...registerables);
 
 const WaveChart = ({ dataset }) => {
     const years = dataset.map(entry => entry.year);
-    const types = ['type1', 'type2', 'type3', 'type4'];
+    const types = ['Pop', 'Rap', 'RnB', 'Rock', 'Outros'];
+
+    // Define an array of colors for each type
+    const colors = [
+        'rgba(135, 85, 251, 0.7)',
+        'rgba(128, 159, 251, 0.7)',
+        'rgba(114, 123, 250, 0.7)',
+        'rgba(255, 51, 173, 0.7)',
+        'rgba(57, 181, 255, 0.7)',
+    ];
 
     const chartData = {
         labels: years,
@@ -19,8 +25,8 @@ const WaveChart = ({ dataset }) => {
             label: type,
             data: dataset.map(entry => entry[type]),
             fill: true,
-            borderColor: `rgba(${index * 50 + 50}, ${index * 50 + 50}, ${index * 50 + 50}, 0.7)`,
-            backgroundColor: `rgba(${index * 50 + 50}, ${index * 50 + 50}, ${index * 50 + 50}, 0.5)`,
+            borderColor: colors[index],
+            backgroundColor: colors[index],
         })),
     };
 

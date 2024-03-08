@@ -7,6 +7,16 @@
     overflow: hidden;
 }
 
+@font-face {
+    font-family: 'BespokeSerif-Regular';
+    src: url('./fonts/BespokeSerif-Regular.woff2') format('woff2'),
+    url('./fonts/BespokeSerif-Regular.woff') format('woff'),
+    url('./fonts/BespokeSerif-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
 .wave {
     position: absolute;
     bottom: 0;

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import WaveChart from './WaveChart';
+import TextImageFlex from './TextImageFlex';
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 const AlbumoftheYearChart = () => {
@@ -40,7 +41,7 @@ const AlbumoftheYearChart = () => {
 };
 
 const components = {
-  Image, AlbumoftheYearChart
+  Image, AlbumoftheYearChart, TextImageFlex
 }
 
 interface MdxProps {

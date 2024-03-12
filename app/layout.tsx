@@ -20,10 +20,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
-        className={`antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${inter.className}`}
+        className={`antialiased min-h-screen bg-white dark:bg-stone-950 text-slate-900 dark:text-slate-50 ${inter.className}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="max-w-2xl mx-auto py-10 px-4">
+          <div className="max-w-7xl mx-auto py-10 px-4">
             <header>
               <div className="flex items-center justify-between">
                 <ModeToggle />

@@ -15,14 +15,18 @@ const TextImageFlex = ({ textHeading, textContent, imagePath, altText, width, he
 
     return (
         <section className="flex items-start">
-            <div className="w-2/3 pr-20">
+            <div className="w-36 pr-96">
                 {/* Dynamic text content with line breaks */}
                 <h2 className="text-xl font-bold mb-4">{textHeading}</h2>
-                <p className="text-gray-700">{renderTextWithLineBreaks(textContent)}</p>
+                <p className="text-gray-700 pl-10 pr-10">{renderTextWithLineBreaks(textContent)}</p>
             </div>
-            <div className="w-1/3">
+            <div className="w-96">
+                <div className="mt-96 mr-96 ml-96"></div>
+                {/* Adjust the margin to create space */}
+            </div>
+            <div className="w-24">
                 {/* Dynamic image using the Next.js Image component with aspect ratio */}
-                <div className="mt-4 relative"> {/* Adjust the margin and add relative positioning */}
+                <div className="mt-96 mr-96 ml-96 relative"> {/* Adjust the margin and add relative positioning */}
                     <Image
                         src={imagePath}
                         alt={altText}

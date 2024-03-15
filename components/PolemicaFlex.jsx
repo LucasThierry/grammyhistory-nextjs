@@ -70,14 +70,14 @@ const PolemicaFlex = ({ textHeading, textContent, imagePath, altText, width, hei
                     <br/>
                     <br/>Outra polêmica foi com o rapper afro-americano Jay-Z, renomado com 24 estatuetas do Grammy, não
                     poupou críticas à premiação, gerando controvérsias. Durante sua intervenção ao ser homenageado na
-                    categoria "Dr. Dre de Impacto Global", destinada a artistas com influência significativa na
+                    categoria &quot;Dr. Dre de Impacto Global&quot;, destinada a artistas com influência significativa na
                     indústria musical, Jay-Z destacou as disparidades e injustiças que permeiam a premiação.
 
                     <br/>
                     <br/>
                     <br/>
                     Jay-Z fez questão de mencionar o fato de que sua esposa, Beyoncé, apesar de ser a recordista de
-                    Grammys, com 32 estatuetas, nunca venceu na categoria "Álbum do Ano". Ele, ao lado de sua filha Blue
+                    Grammys, com 32 estatuetas, nunca venceu na categoria &quot;Álbum do Ano&quot;. Ele, ao lado de sua filha Blue
                     Ivy, expressou o entendimento de que as escolhas são subjetivas, mas enfatizou a necessidade de
                     seriedade nas avaliações.
                     <br/>
@@ -93,7 +93,7 @@ const PolemicaFlex = ({ textHeading, textContent, imagePath, altText, width, hei
                 </div>
                 <p className="text-gray-700 pl-10 pr-10"><br/>
                     <br/>Sua intervenção foi aclamada pela plateia, enquanto ele também
-                    abordava a sensação de alguns artistas se sentem "roubados", afirmando que alguns realmente foram,
+                    abordava a sensação de alguns artistas se sentem &quot;roubados&quot;, afirmando que alguns realmente foram,
                     mas encorajando a continuação dos projetos independentemente do reconhecimento do Grammy.<br/>
                     <br/>
                 </p>

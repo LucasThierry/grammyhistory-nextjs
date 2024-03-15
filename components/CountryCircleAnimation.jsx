@@ -1,36 +1,59 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../app/globals.css'; // Import your CSS file for styling
 
 const CountryCircleAnimation = () => {
-    const initialSizes = Array(10).fill(20); // Initial sizes for 10 circles
-    const finalSizes = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140]; // Specific final sizes for each circle
-    const [circleSizes, setCircleSizes] = useState(initialSizes);
+    const [circleSizes, setCircleSizes] = useState(Array(10).fill(20)); // Initial sizes for 10 circles
+    const containerRef = useRef(null);
 
     // Function to animate the circles
     const animateCircles = () => {
-        setCircleSizes(finalSizes);
+        const finalSizeConst = 10
+        const finalSizes = [1*finalSizeConst, 1*finalSizeConst, 2*finalSizeConst, 1*finalSizeConst, 6*finalSizeConst, 108*finalSizeConst, 18*finalSizeConst, 1*finalSizeConst, 1*finalSizeConst, 1*finalSizeConst]; // Specific final sizes for each circle
+        const animationDuration = 5000; // Total duration of animation in milliseconds (10 times slower than before)
+        const steps = 50; // Number of steps for the animation
+        const stepDuration = animationDuration / steps; // Duration of each step
 
-        // Reset sizes to initial state after animation completes
-        setTimeout(() => {
-            setCircleSizes(initialSizes);
-        }, 1000); // Adjust the delay as needed
+        // Calculate the increment for each step
+        const sizeIncrements = finalSizes.map((finalSize, index) => {
+            const initialSize = circleSizes[index];
+            return (finalSize - initialSize) / steps;
+        });
+
+        // Execute each step with a delay
+        let currentSizes = [...circleSizes];
+        for (let i = 0; i < steps; i++) {
+            setTimeout(() => {
+                currentSizes = currentSizes.map((size, index) => size + sizeIncrements[index]);
+                setCircleSizes(currentSizes);
+            }, i * stepDuration);
+        }
     };
 
     useEffect(() => {
-        // Trigger animation when component mounts
-        animateCircles();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animateCircles();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
 
-        // Loop animation
-        const intervalId = setInterval(animateCircles, 2000); // Adjust the interval as needed
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
 
-        // Clear interval on component unmount to avoid memory leaks
-        return () => clearInterval(intervalId);
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
     }, []);
 
     return (
-        <div className="container">
+        <div ref={containerRef} className="container">
             {circleSizes.map((size, index) => (
                 <div
                     key={index}

@@ -44,7 +44,7 @@
 
 .circle {
     border-radius: 50%;
-    background-color: #dbac34;
+    background-color: #dbd334;
     margin: 10px;
-    transition: all 0.5s ease; /* CSS transition for smooth animation */
+    transition: all 5s ease; /* Adjusted transition duration for slower animation */
 }

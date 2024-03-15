@@ -3,6 +3,7 @@ import WaveChart from './WaveChart';
 import AreaChart from "./AreaChart";
 import CountryCircleAnimation from "./CountryCircleAnimation";
 import TextImageFlex from './TextImageFlex';
+import PolemicaFlex from "./PolemicaFlex";
 import PhotoSlideshow from './PhotoSlideshow';
 import { useMDXComponent } from "next-contentlayer/hooks"
 
@@ -61,7 +62,7 @@ const WinnersAlbum = () => {
 };
 
 const components = {
-  Image, AlbumoftheYearChart, TextImageFlex, AlbumoftheYearAreaChart, CountryCircleAnimation, WinnersAlbum
+  Image, AlbumoftheYearChart, TextImageFlex, AlbumoftheYearAreaChart, CountryCircleAnimation, WinnersAlbum, PolemicaFlex
 }
 
 interface MdxProps {

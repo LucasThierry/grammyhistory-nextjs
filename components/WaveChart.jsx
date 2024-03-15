@@ -12,11 +12,18 @@ const WaveChart = ({ dataset }) => {
 
     // Define an array of colors for each type
     const colors = [
-        'rgba(135, 85, 251, 0.7)',
-        'rgba(128, 159, 251, 0.7)',
-        'rgba(114, 123, 250, 0.7)',
-        'rgba(255, 51, 173, 0.7)',
-        'rgba(57, 181, 255, 0.7)',
+        'rgba(135, 85, 251, 0.5)',
+        'rgba(128, 159, 251, 0.5)',
+        'rgba(114, 123, 250, 0.5)',
+        'rgba(255, 51, 173, 0.5)',
+        'rgba(57, 181, 255, 0.5)',
+    ];
+    const border_colors = [
+        'rgba(135, 85, 251, 1)',
+        'rgba(128, 159, 251, 1)',
+        'rgba(114, 123, 250, 1)',
+        'rgba(255, 51, 173, 1)',
+        'rgba(57, 181, 255, 1)',
     ];
 
     const chartData = {
@@ -25,26 +32,43 @@ const WaveChart = ({ dataset }) => {
             label: type,
             data: dataset.map(entry => entry[type]),
             fill: true,
-            borderColor: colors[index],
+            lineTension: 0.1,
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            borderColor: border_colors[index],
             backgroundColor: colors[index],
         })),
     };
 
     const chartOptions = {
         scales: {
-            x: {
-                type: 'linear', // Use 'linear' for a numerical x-axis
-                position: 'bottom',
-            },
             y: {
-                type: 'linear',
-                position: 'left',
+                beginAtZero: true,
+                stacked: true,
+                title: {
+                    display: true,
+                    text: 'Statistics'
+                }
             },
+            x: {
+                stacked: true
+            }
         },
     };
 
     return (
-        <div className="wave-chart-container">
+        <div className="area-chart-container">
             <Line data={chartData} options={chartOptions} />
         </div>
     );

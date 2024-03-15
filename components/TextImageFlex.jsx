@@ -15,6 +15,19 @@ const TextImageFlex = ({ textHeading, textContent, imagePath, altText, width, he
 
     return (
         <section className="flex items-start">
+            <div className="w-24">
+                <div className="mt-96 mr-96 ml-96 relative"> {/* Workaround to post not respecting paddings */}
+                    <Image
+                        src="/MargemGambiarra.svg"
+                        alt="Margem Gambiarra"
+                        width="250"
+                        height="1"
+                    />
+                    <p className="absolute bottom-0 left-0 right-0 text-center bg-gray-800 text-white py-2">
+                        {legend}
+                    </p>
+                </div>
+            </div>
             <div className="w-36 pr-96">
                 {/* Dynamic text content with line breaks */}
                 <h2 className="text-xl font-bold mb-4">{textHeading}</h2>
@@ -23,6 +36,19 @@ const TextImageFlex = ({ textHeading, textContent, imagePath, altText, width, he
             <div className="w-96">
                 <div className="mt-96 mr-96 ml-96"></div>
                 {/* Adjust the margin to create space */}
+            </div>
+            <div className="w-24">
+                <div className="mt-96 mr-96 ml-96 relative"> {/* Workaround to post not respecting paddings */}
+                    <Image
+                        src="/MargemGambiarra.svg"
+                        alt="Margem Gambiarra"
+                        width="500"
+                        height="1"
+                    />
+                    <p className="absolute bottom-0 left-0 right-0 text-center bg-gray-800 text-white py-2">
+                        {legend}
+                    </p>
+                </div>
             </div>
             <div className="w-24">
                 {/* Dynamic image using the Next.js Image component with aspect ratio */}

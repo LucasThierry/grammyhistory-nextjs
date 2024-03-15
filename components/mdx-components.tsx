@@ -1,7 +1,9 @@
 import Image from "next/image"
 import WaveChart from './WaveChart';
 import AreaChart from "./AreaChart";
+import CountryCircleAnimation from "./CountryCircleAnimation";
 import TextImageFlex from './TextImageFlex';
+import PhotoSlideshow from './PhotoSlideshow';
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 const dataset = [
@@ -34,7 +36,6 @@ const dataset = [
 ];
 
 const AlbumoftheYearChart = () => {
-
   return (
       <div>
         <WaveChart dataset={dataset} />
@@ -43,7 +44,6 @@ const AlbumoftheYearChart = () => {
 };
 
 const AlbumoftheYearAreaChart = () => {
-
   return (
       <div>
         <AreaChart dataset={dataset} />
@@ -51,8 +51,17 @@ const AlbumoftheYearAreaChart = () => {
   );
 };
 
+const WinnersAlbum = () => {
+  return (
+      <div>
+        <h1>Winners gallery</h1>
+        <PhotoSlideshow />
+      </div>
+  );
+};
+
 const components = {
-  Image, AlbumoftheYearChart, TextImageFlex, AlbumoftheYearAreaChart
+  Image, AlbumoftheYearChart, TextImageFlex, AlbumoftheYearAreaChart, CountryCircleAnimation, WinnersAlbum
 }
 
 interface MdxProps {

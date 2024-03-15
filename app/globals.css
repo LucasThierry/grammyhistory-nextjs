@@ -34,3 +34,17 @@
         transform: translateX(-100%);
     }
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.circle {
+    border-radius: 50%;
+    background-color: #dbac34;
+    margin: 10px;
+    transition: all 0.5s ease; /* CSS transition for smooth animation */
+}

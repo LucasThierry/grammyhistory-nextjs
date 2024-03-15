@@ -17,6 +17,16 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'BespokeSerif-Medium';
+    src: url('./fonts/BespokeSerif-Medium.woff2') format('woff2'),
+    url('./fonts/BespokeSerif-Medium.woff') format('woff'),
+    url('./fonts/BespokeSerif-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+}
+
 .wave {
     position: absolute;
     bottom: 0;

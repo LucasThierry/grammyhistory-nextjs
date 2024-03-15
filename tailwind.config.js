@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        custom: ['BespokeSerif-Regular', 'sans-serif']
+        custom: ['BespokeSerif-Medium', 'sans-serif']
       }
     },
   },

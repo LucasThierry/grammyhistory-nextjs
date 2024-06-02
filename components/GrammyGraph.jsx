@@ -10,7 +10,7 @@ const GrammyGraph = ({ data }) => {
     useEffect(() => {
         const svg = d3.select(ref.current);
         const width = window.innerWidth;
-        const personSize = 260; // Adjusted to 65% of 400
+        const personSize = 260; // Adjusted size
         const padding = 20;
 
         const totalEntries = data.flatMap(year => Object.values(year.categories).flat()).length;
@@ -23,21 +23,36 @@ const GrammyGraph = ({ data }) => {
             .attr("height", calculatedHeight);
 
         const ethnicityColors = {
-            White: "beige",
-            Black: "brown",
+            White: "white",
+            Black: "black",
             Asian: "yellow",
-            Latino: "red"
+            Latino: "red",
+            Hispanic: "red"
+        };
+
+        const getEthnicityColors = (ethnicity) => {
+            if (ethnicity.includes("/")) {
+                return ethnicity.split("/").map(e => ethnicityColors[e]);
+            } else if (ethnicityColors[ethnicity]) {
+                return [ethnicityColors[ethnicity]];
+            }
+            return [];
         };
 
         const getGenderPath = (gender, type) => {
-            const maleSymbol = d3.symbol().type(d3.symbolTriangle).size(3600)(); // Original size
-            const femaleSymbol = d3.symbol().type(d3.symbolTriangle).size(3600)(); // Original size
+            const maleSymbol = d3.symbol().type(d3.symbolTriangle).size(2600)(); // Adjusted size
+            const femaleSymbol = d3.symbol().type(d3.symbolTriangle).size(2600)(); // Adjusted size
+
+            const isCombination = gender.includes("Male") && gender.includes("Female");
+
             if (type === "Band") {
                 if (gender === "Male") return Array(4).fill(maleSymbol);
                 if (gender === "Female") return Array(4).fill(femaleSymbol);
-                if (gender === "Male, Female") return [maleSymbol, femaleSymbol, maleSymbol, femaleSymbol];
-            } else if (type === "Collaboration") {
-                if (gender === "Male, Female") return [maleSymbol, femaleSymbol];
+                if (isCombination) return [maleSymbol, femaleSymbol, maleSymbol, femaleSymbol];
+            } else if (type === "Collab") {
+                if (isCombination) return [maleSymbol, femaleSymbol];
+                if (gender === "Male") return [maleSymbol, maleSymbol];
+                if (gender === "Female") return [femaleSymbol, femaleSymbol];
             } else {
                 return gender === "Male" ? [maleSymbol] : [femaleSymbol];
             }
@@ -49,7 +64,7 @@ const GrammyGraph = ({ data }) => {
             .enter()
             .append("g")
             .attr("class", "person")
-            .attr("transform", (d, i) => `translate(${i % entriesPerRow * (personSize + padding)}, ${Math.floor(i / entriesPerRow) * (personSize + padding)})`);
+            .attr("transform", (d, i) => `translate(${(i % entriesPerRow) * (personSize + padding)}, ${Math.floor(i / entriesPerRow) * (personSize + padding)})`);
 
         persons.append("rect")
             .attr("width", personSize)
@@ -59,22 +74,25 @@ const GrammyGraph = ({ data }) => {
 
         persons.each(function (d) {
             const genderPaths = getGenderPath(d.gender, d.type);
+            const ethnicityColors = getEthnicityColors(d.ethnicity);
+
             genderPaths.forEach((path, i) => {
                 const xOffset = (i % 2) * (personSize / 2) + personSize / 4;
                 const yOffset = (Math.floor(i / 2) * (personSize / 4)) + personSize / 2;
-                const rotation = (d.gender === "Female" || (d.gender === "Male, Female" && i % 2 !== 0)) ? 180 : 0;
+                const isFemale = (d.gender.includes("Female") && !d.gender.includes("Male")) || (d.gender.includes("Female") && i % 2 !== 0);
+                const rotation = isFemale ? 180 : 0;
                 d3.select(this).append("path")
                     .attr("d", path)
                     .attr("transform", `translate(${xOffset}, ${yOffset}) rotate(${rotation})`)
-                    .attr("fill", ethnicityColors[d.ethnicity]);
+                    .attr("fill", ethnicityColors[i % ethnicityColors.length]);
             });
         });
 
         persons.append("text")
             .attr("x", personSize / 2)
-            .attr("y", personSize - 40)  // Adjusted position for larger text
+            .attr("y", personSize - 20)  // Adjusted position for larger text
             .attr("text-anchor", "middle")
-            .attr("font-size", "32px")  // Adjusted font size for larger squares
+            .attr("font-size", "16px")  // Adjusted font size
             .attr("fill", "white")  // White text for contrast
             .text(d => d.artist);
 

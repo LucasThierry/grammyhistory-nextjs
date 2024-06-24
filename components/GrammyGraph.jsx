@@ -39,22 +39,22 @@ const GrammyGraph = ({ data }) => {
             return [];
         };
 
-        const getGenderPath = (gender, type) => {
-            const maleSymbol = d3.symbol().type(d3.symbolTriangle).size(2600)(); // Adjusted size
-            const femaleSymbol = d3.symbol().type(d3.symbolTriangle).size(2600)(); // Adjusted size
+        const maleSymbolPath = "M10 10 A 1 1 0 0 1 20 10 A 1 1 0 0 1 10 10 M 10 20 L 10 40 L 15 40 L 15 50 L 25 50 L 25 40 L 30 40 L 30 20 Z M 12 24 L 8 24 L 8 26 L 12 26 Z M 28 24 L 32 24 L 32 26 L 28 26 Z";
+        const femaleSymbolPath = "M20 10 A 1 1 0 0 1 30 10 A 1 1 0 0 1 20 10 M 20 20 L 20 40 L 25 40 L 25 50 L 35 50 L 35 40 L 40 40 L 40 20 Z M 22 24 L 18 24 L 18 26 L 22 26 Z M 38 24 L 42 24 L 42 26 L 38 26 Z";
 
+        const getGenderPath = (gender, type) => {
             const isCombination = gender.includes("Male") && gender.includes("Female");
 
             if (type === "Band") {
-                if (gender === "Male") return Array(4).fill(maleSymbol);
-                if (gender === "Female") return Array(4).fill(femaleSymbol);
-                if (isCombination) return [maleSymbol, femaleSymbol, maleSymbol, femaleSymbol];
+                if (gender === "Male") return Array(4).fill(maleSymbolPath);
+                if (gender === "Female") return Array(4).fill(femaleSymbolPath);
+                if (isCombination) return [maleSymbolPath, femaleSymbolPath, maleSymbolPath, femaleSymbolPath];
             } else if (type === "Collab") {
-                if (isCombination) return [maleSymbol, femaleSymbol];
-                if (gender === "Male") return [maleSymbol, maleSymbol];
-                if (gender === "Female") return [femaleSymbol, femaleSymbol];
+                if (isCombination) return [maleSymbolPath, femaleSymbolPath];
+                if (gender === "Male") return [maleSymbolPath, maleSymbolPath];
+                if (gender === "Female") return [femaleSymbolPath, femaleSymbolPath];
             } else {
-                return gender === "Male" ? [maleSymbol] : [femaleSymbol];
+                return gender === "Male" ? [maleSymbolPath] : [femaleSymbolPath];
             }
             return [];
         };
